@@ -19,6 +19,8 @@ build:
 
 variables:
     env:
+        MAGENTO_BACKEND_URL: https://venia-concept-el5v5ta-u3uh6xofiwzu2.demo.magentosite.cloud/
+        BRAINTREE_TOKEN: sandbox_q7f8z87n_zkw2ctrkj75ndvkc
         MAGENTO_BUILDPACK_PROVIDE_SECURE_HOST: 1
         MAGENTO_BUILDPACK_SECURE_HOST_ADD_UNIQUE_HASH: 0
         PORT: 80
