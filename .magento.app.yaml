@@ -1,0 +1,29 @@
+name: venia-concept
+type: nodejs:10
+
+dependencies:
+  nodejs:
+    yarn: "1.15.*"
+
+web:
+  commands:
+    start: NODE_ENV=production yarn stage:venia
+
+hooks:
+  build: |
+    yarn install
+    yarn build:cloud
+
+build:
+  flavor: none
+
+variables:
+    env:
+        MAGENTO_BUILDPACK_PROVIDE_SECURE_HOST: 1
+        MAGENTO_BUILDPACK_SECURE_HOST_ADD_UNIQUE_HASH: 0
+        PORT: 80
+        UPWARD_JS_BIND_LOCAL: 1
+        UPWARD_JS_LOG_URL: 0
+        UPWARD_JS_UPWARD_PATH: venia-upward.yml
+
+disk: 512
