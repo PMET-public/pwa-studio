@@ -1,4 +1,4 @@
-name: venia-concept
+name: venia-concept-storefront
 type: nodejs:10
 
 dependencies:
