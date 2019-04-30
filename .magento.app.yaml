@@ -28,4 +28,4 @@ variables:
         UPWARD_JS_LOG_URL: 0
         UPWARD_JS_UPWARD_PATH: venia-upward.yml
 
-disk: 512
+disk: 1024
