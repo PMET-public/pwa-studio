@@ -27,5 +27,6 @@ variables:
         UPWARD_JS_BIND_LOCAL: 1
         UPWARD_JS_LOG_URL: 0
         UPWARD_JS_UPWARD_PATH: venia-upward.yml
+        YARN_CACHE_FOLDER: /tmp/log
 
 disk: 1024
