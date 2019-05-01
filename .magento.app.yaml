@@ -27,10 +27,6 @@ variables:
         UPWARD_JS_BIND_LOCAL: 1
         UPWARD_JS_LOG_URL: 0
         UPWARD_JS_UPWARD_PATH: venia-upward.yml
-
-mounts:
-    '.cache/yarn':
-        source: local
-        source_path: cache
+        YARN_CACHE_FOLDER: /tmp/yarn
 
 disk: 1024
