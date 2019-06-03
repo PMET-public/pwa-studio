@@ -85,25 +85,36 @@ class CartOptions extends Component {
         updateCart(payload, cartItem.item_id);
     };
 
+    get isMissingOptions() {
+        const { configItem, cartItem } = this.props;
+
+        // Non-configurable products can't be missing options
+        if (cartItem.product_type !== 'configurable') {
+            return false;
+        }
+
+        // Configurable products are missing options if we have fewer
+        // option selections than the product has options.
+        const { configurable_options } = configItem;
+        const numProductOptions = configurable_options.length;
+        const numProductSelections = this.state.optionSelections.size;
+
+        return numProductSelections < numProductOptions;
+    }
+
     render() {
-        const { fallback, handleSelectionChange, props } = this;
+        const {
+            fallback,
+            handleSelectionChange,
+            isMissingOptions,
+            props
+        } = this;
         const { classes, cartItem, configItem, isUpdatingItem } = props;
         const { name, price } = cartItem;
 
         const modalClass = isUpdatingItem
             ? classes.modal_active
             : classes.modal;
-
-        const options = isProductConfigurable(configItem) ? (
-            <Suspense fallback={fallback}>
-                <section className={classes.options}>
-                    <Options
-                        options={configItem.configurable_options}
-                        onSelectionChange={handleSelectionChange}
-                    />
-                </section>
-            </Suspense>
-        ) : null;
 
         return (
             <Form className={classes.root}>
@@ -114,7 +125,14 @@ class CartOptions extends Component {
                     </span>
                 </div>
                 <div className={classes.form}>
-                    {options}
+                    <section className={classes.options}>
+                        <Suspense fallback={fallback}>
+                            <Options
+                                onSelectionChange={handleSelectionChange}
+                                product={configItem}
+                            />
+                        </Suspense>
+                    </section>
                     <section className={classes.quantity}>
                         <h2 className={classes.quantityTitle}>
                             <span>Quantity</span>
@@ -129,7 +147,11 @@ class CartOptions extends Component {
                     <Button onClick={this.props.closeOptionsDrawer}>
                         <span>Cancel</span>
                     </Button>
-                    <Button priority="high" onClick={this.handleClick}>
+                    <Button
+                        priority="high"
+                        onClick={this.handleClick}
+                        disabled={isMissingOptions}
+                    >
                         <span>Update Cart</span>
                     </Button>
                 </div>
