@@ -6,7 +6,7 @@
     justify-content: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.85);
     border-top: 1px solid #ccc;
     text-align: center;
 }
@@ -17,11 +17,22 @@
 }
 
 .tileMarker {
+    border: 0.05rem solid;
+    bottom: 0.75rem;
+    color: rgb(var(--miss-alice-gold-rgb));
+    height: 1.75rem;
     position: absolute;
     width: 1.75rem;
+}
+
+.tileMarker:before {
+    border: 0.05rem solid;
+    bottom: 0;
+    color: rgb(var(--miss-alice-gold-rgb));
+    content: '';
     height: 1.75rem;
-    border: 1px solid;
-    border-radius: 2px;
-    bottom: 0.75rem;
-    margin-bottom: 2px;
+    left: -0.1rem;
+    position: absolute;
+    transform: rotate(-10deg);
+    width: 1.75rem;
 }

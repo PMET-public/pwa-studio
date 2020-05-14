@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classify from 'src/classify';
-import logo from './logo.svg';
+import logo from './miss-alice.svg';
 
 class Logo extends Component {
     static propTypes = {
@@ -12,7 +12,7 @@ class Logo extends Component {
     };
 
     static defaultProps = {
-        height: 24
+        height: 35
     };
 
     render() {
